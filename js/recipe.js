@@ -129,10 +129,17 @@ function renderRecipe(){
     });
   }
 
-  const stepsList = $("#mSteps");
+   const stepsList = $("#mSteps");
   if(stepsList){
     stepsList.innerHTML = "";
-    const currentSteps = recipe.steps || [];
+
+    let currentSteps = [];
+
+    if(Array.isArray(recipe.steps)){
+      currentSteps = recipe.steps;
+    } else if(recipe.steps && Array.isArray(recipe.steps.da)){
+      currentSteps = recipe.steps.da;
+    }
 
     currentSteps.forEach(step => {
       const li = document.createElement("li");
