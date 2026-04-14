@@ -1,5 +1,7 @@
 let currentId = null;
 
+// Rating stars UI rendering
+// Displays and updates the user's rating visually in the #stars container
 function renderStars(){
   const wrap = $("#stars");
   if(!wrap || !currentId) return;
@@ -25,6 +27,8 @@ function renderStars(){
   }
 }
 
+// Rating system
+// Stores rating per recipe and refreshes star display
 function setRating(v){
   if(!currentId) return;
 
@@ -34,6 +38,8 @@ function setRating(v){
   renderStars();
 }
 
+// "Your Choice" toggle system
+// Adds or removes current recipe from user's saved list
 function toggleList(){
   if(!currentId) return;
 
@@ -53,7 +59,8 @@ function toggleList(){
     toggleBtn.textContent = inList(currentId) ? t("removeChoice") : t("addChoice");
   }
 }
-
+// Recipe page renderer
+// Loads recipe data from URL parameter and populates all UI elements
 function renderRecipe(){
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
@@ -62,6 +69,7 @@ function renderRecipe(){
   const recipePage = $("#recipePage");
   const missingRecipe = $("#missingRecipe");
 
+  // Handles where recipe ID is invalid or not found
   if(!recipe){
     if(recipePage) recipePage.hidden = true;
     if(missingRecipe) missingRecipe.hidden = false;
@@ -74,6 +82,7 @@ function renderRecipe(){
   if(recipePage) recipePage.hidden = false;
   if(missingRecipe) missingRecipe.hidden = true;
 
+  // Renders recipe image into #mPoster container
   const poster = $("#mPoster");
   if(poster){
     poster.innerHTML = "";
@@ -92,6 +101,7 @@ function renderRecipe(){
   if($("#mDiff")) $("#mDiff").textContent = recipe.diff;
   if($("#mTags")) $("#mTags").textContent = recipe.tags.join(", ");
 
+  // Fills ingredients list (#mIng) with recipe data
   const ingList = $("#mIng");
   if(ingList){
     ingList.innerHTML = "";
@@ -111,6 +121,7 @@ function renderRecipe(){
     });
   }
 
+  // Fills step-by-step instructions (#mSteps)
   const stepsList = $("#mSteps");
   if(stepsList){
     stepsList.innerHTML = "";
@@ -129,15 +140,19 @@ function renderRecipe(){
       stepsList.appendChild(li);
     });
   }
-
+  
+// Updates "Your Choice" button text based on saved state
   const toggleBtn = $("#toggleList");
   if(toggleBtn){
     toggleBtn.textContent = inList(currentId) ? t("removeChoice") : t("addChoice");
   }
 
+// Initializes rating UI for current recipe
   renderStars();
 }
 
+// Dynamic UI text
+// Updates all static text elements on the recipe page
 function applyPageLanguage(){
   if($("#backBtn")) $("#backBtn").textContent = "← Tilbage til opskrifter";
   if($("#ingredientsTitle")) $("#ingredientsTitle").textContent = "Ingredienser";
@@ -158,7 +173,8 @@ function applyPageLanguage(){
     renderStars();
   }
 }
-
+// Event listener system
+// Handles navigation and user actions
 if($("#backBtn")){
   $("#backBtn").onclick = () => {
     const from = sessionStorage.getItem("ff_last_page") || "";
