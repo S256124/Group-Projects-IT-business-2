@@ -8,44 +8,9 @@ function goToRecipe(id){
   window.location.href = `recipe.html?id=${encodeURIComponent(id)}`;
 }
 
-// Recipe list rendering with search filter
-function renderList(ids){
-  const searchInput = $("#q");
-  const searchValue = searchInput ? searchInput.value.trim().toLowerCase() : "";
 
-  const recipes = ids
-    .map(byId)
-    .filter(Boolean)
-    .filter(r => {
-      if(!searchValue) return true;
-
-      const ingredients = Array.isArray(r.ing) ? r.ing.join(" ") : "";
-      const steps = Array.isArray(r.steps) ? r.steps.join(" ") : "";
-
-      const text = (
-        r.t + " " +
-        r.d + " " +
-        r.tags.join(" ") + " " +
-        ingredients + " " +
-        steps
-      ).toLowerCase();
-
-      return text.includes(searchValue);
-    });
-
-  const list = $("#list");
-  if(list){
-    list.innerHTML = "";
-    recipes.forEach(r => list.appendChild(makeItem(r)));
-  }
-
-  const empty = $("#empty");
-  if(empty){
-    empty.textContent = "Ingen opskrifter fundet.";
-    empty.hidden = recipes.length > 0;
-  }
-}
-// Feature: Section/Page controller //
+// Feature: Section/Page controller
+// Toggles visibility of #choose and #section and loads relevant recipe data.
 function showPage(page){
   currentPage = page;
 
@@ -85,7 +50,8 @@ function showPage(page){
     if(clearBtn) clearBtn.hidden = true;
   }
 }
-
+// Homepage navigation (goes back to homepage)
+// Resets UI and returns user to the frontpage
 function goBack(){
   const choose = $("#choose");
   const section = $("#section");
@@ -104,7 +70,8 @@ function goBack(){
   currentPage = null;
   sessionStorage.removeItem("ff_last_page");
 }
-
+// Recipe Search Engine (Frontpage Search)
+// Searches across entire dataset (RECIPES) and renders matching results.
 function runFrontSearch(){
   const input = $("#frontSearch");
   if(!input) return;
