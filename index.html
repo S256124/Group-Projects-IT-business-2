@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoodFlix</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/frontpage.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="topLeft"></div>
+
+    <h1 id="homeLogo" class="logoBtn"> 
+      <a href="index.html">
+              FOOD<span>FLIX</span>
+      </a>
+      </h1>
+
+    <nav class="topRight" aria-label="Top menu">
+     
+      <div class="userWrap">
+  <button id="accountBtn" class="topLoginBtn" type="button" aria-label="Log ind">
+    Log ind
+  </button>
+</div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="choose" id="choose" aria-labelledby="chooseTitle">
+      <h1 class="chooseTitle" id="chooseTitle">Vælg en sektion</h1>
+
+      <nav class="chooseGrid" aria-label="Vælg opskriftssektion">
+        <button class="choice" data-page="inspiration" type="button">
+          <strong class="choiceTag">INSPIRATION</strong>
+          <span class="choiceSub">Idéer til at komme i gang</span>
+        </button>
+
+        <button class="choice" data-page="top10" type="button">
+          <strong class="choiceTag">TOP 10</strong>
+          <span class="choiceSub">Mest populære opskrifter</span>
+        </button>
+
+        <button class="choice" data-page="yourchoice" type="button">
+          <strong class="choiceTag">YOUR CHOICE</strong>
+          <span class="choiceSub">Dine gemte opskrifter</span>
+        </button>
+      </nav>
+
+      <section class="frontSearchBox" aria-labelledby="frontSearchHeading">
+        <h2 id="frontSearchHeading" class="srOnly">Søg efter opskrifter</h2>
+        <p class="frontSearchText">
+          Klar til at finde en opskrift? Søg efter navn eller ingredienser.
+        </p>  
+
+<form class="frontSearchBar" id="frontSearchForm">
+  <label for="frontSearch" class="srOnly">Søg efter opskrifter</label>
+  <input id="frontSearch" type="text" placeholder="Søg efter opskrifter..." />
+  <button id="frontSearchBtn" type="submit">Søg</button>
+</form>
+      </section>
+    </section>
+
+    <section class="section" id="section" hidden aria-labelledby="sectionTitle">
+      <header class="sectionHead">
+        <h2 id="sectionTitle">—</h2>
+
+        <form class="sectionRight" id="sectionSearchForm">
+          <label for="q" class="srOnly">Søg i denne sektion</label>
+          <input id="q" class="search" placeholder="Søg i denne sektion..." />
+          <button id="clearList" class="btn dark" hidden type="button">Clear</button>
+        </form>
+      </header>
+
+      <section aria-labelledby="resultsHeading">
+        <h3 id="resultsHeading" class="srOnly">Opskrifter</h3>
+        <ul id="list" class="vlist"></ul>
+        <p id="empty" class="empty" hidden>Ingen opskrifter fundet.</p>
+      </section>
+
+      <nav class="backRow" aria-label="Tilbage navigation">
+        <button id="backBtn" class="btn dark" type="button">← Tilbage til forsiden</button>
+      </nav>
+    </section>
+  </main>
+
+<section id="userModal" class="modal" aria-hidden="true">
+  <div class="backdrop" id="userModalBackdrop" aria-hidden="true"></div>
+
+  <article class="panel userPanel" role="dialog" aria-modal="true" aria-labelledby="userModalTitle">
+    <button class="x" id="closeUserModal" type="button" aria-label="Luk">✕</button>
+
+    <h2 id="userModalTitle">Log ind</h2>
+
+    <p id="userStatus" class="userStatus">Ikke logget ind</p>
+
+    <label class="userLabel" for="emailInput">E-mail</label>
+    <input id="emailInput" class="userInput" type="email" placeholder="E-mail" />
+
+    <label class="userLabel" for="passwordInput">Adgangskode</label>
+    <input id="passwordInput" class="userInput" type="password" placeholder="Adgangskode" />
+
+    <div class="userButtons">
+      <button id="createProfileBtn" class="smallActionBtn" type="button">Opret profil</button>
+      <button id="loginBtn" class="smallActionBtn redMini" type="button">Log ind</button>
+    </div>
+
+    <button id="logoutBtn" class="logoutBtn" type="button">Log ud</button>
+
+    <p id="userMessage" class="userMessage"></p>
+  </article>
+</section>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/frontpage.js"></script>
+</body>
+</html>

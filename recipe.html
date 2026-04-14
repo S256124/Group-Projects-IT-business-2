@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoodFlix - Recipe</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/recipe.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="topLeft"></div>
+
+    <h1 id="homeLogo" class="logoBtn"> 
+      <a href="index.html">
+              FOOD<span>FLIX</span>
+      </a>
+      </h1>
+
+    <nav class="topRight" aria-label="Top menu">
+
+      <div class="userWrap">
+  <button id="accountBtn" class="topLoginBtn" type="button" aria-label="Log ind">
+    Log ind
+  </button>
+</div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap recipeWrap">
+    <nav class="backRow" aria-label="Tilbage navigation">
+<button id="backBtn" class="btn dark" type="button">← Tilbage til opskrifter</button>
+    </nav>
+
+    <section id="recipePage" class="recipePage" aria-labelledby="mTitle">
+      <header class="mTop">
+        <figure id="mPoster" class="mPoster"></figure>
+
+        <section>
+          <h1 id="mTitle" class="mTitle">—</h1>
+
+          <ul class="pills" aria-label="Opskriftsinformation">
+            <li id="mTime" class="pill">—</li>
+            <li id="mDiff" class="pill">—</li>
+            <li id="mTags" class="pill">—</li>
+          </ul>
+
+          <p id="mDesc" class="mDesc">—</p>
+
+          <nav class="actions" aria-label="Opskriftshandlinger">
+            <button id="toggleList" class="btn red" type="button">+ Your Choice</button>
+          </nav>
+        </section>
+      </header>
+
+      <section class="mBottom">
+        <article class="box">
+          <h2 id="ingredientsTitle">Ingredienser</h2>
+          <ul id="mIng"></ul>
+        </article>
+
+        <article class="box">
+          <h2 id="howToTitle">How to make</h2>
+          <ol id="mSteps"></ol>
+        </article>
+
+        <article class="box">
+          <h2 id="ratingTitle">Vurdering</h2>
+          <div id="stars" class="stars"></div>
+          <p id="note" class="note"></p>
+        </article>
+      </section>
+    </section>
+
+    <section id="missingRecipe" class="box missingRecipe" hidden>
+      <h2>Opskrift ikke fundet</h2>
+      <p>Denne opskrift findes ikke.</p>
+    </section>
+  </main>
+
+<section id="userModal" class="modal" aria-hidden="true">
+  <div class="backdrop" id="userModalBackdrop" aria-hidden="true"></div>
+
+  <article class="panel userPanel" role="dialog" aria-modal="true" aria-labelledby="userModalTitle">
+    <button class="x" id="closeUserModal" type="button" aria-label="Luk">✕</button>
+
+    <h2 id="userModalTitle">Log ind</h2>
+
+    <p id="userStatus" class="userStatus">Ikke logget ind</p>
+
+    <label class="userLabel" for="emailInput">E-mail</label>
+    <input id="emailInput" class="userInput" type="email" placeholder="E-mail" />
+
+    <label class="userLabel" for="passwordInput">Adgangskode</label>
+    <input id="passwordInput" class="userInput" type="password" placeholder="Adgangskode" />
+
+    <div class="userButtons">
+      <button id="createProfileBtn" class="smallActionBtn" type="button">Opret profil</button>
+      <button id="loginBtn" class="smallActionBtn redMini" type="button">Log ind</button>
+    </div>
+
+    <button id="logoutBtn" class="logoutBtn" type="button">Log ud</button>
+
+    <p id="userMessage" class="userMessage"></p>
+  </article>
+</section>
+
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/recipe.js"></script>
+</body>
+</html>

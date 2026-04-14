@@ -1,0 +1,82 @@
+.recipeWrap{
+  padding-top: 18px;
+}
+
+.recipePage{
+  margin-top: 12px;
+}
+
+.mTop{
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:14px;
+}
+
+.mPoster{
+  height:220px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(135deg, rgba(229,9,20,.75), rgba(0,0,0,.35));
+  margin:0;
+}
+
+.mTitle{
+  margin:0 0 6px;
+  font-size:26px;
+}
+
+.mDesc{
+  margin:0 0 10px;
+  color: rgba(255,255,255,.80);
+  line-height:1.5;
+}
+
+.mBottom{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 0.9fr;
+  gap:14px;
+}
+
+#mSteps{
+  margin:0;
+  padding-left: 20px;
+  color: rgba(255,255,255,.85);
+  line-height:1.7;
+}
+
+#mIng{
+  margin:0;
+  padding-left: 18px;
+  color: rgba(255,255,255,.85);
+  line-height:1.6;
+}
+
+.box ul{
+  margin:0;
+  padding-left: 18px;
+  color: rgba(255,255,255,.85);
+  line-height:1.6;
+}
+
+.missingRecipe{
+  margin-top: 16px;
+}
+
+@media (max-width: 900px){
+  .mTop{
+    grid-template-columns: 1fr;
+  }
+
+  .mBottom{
+    grid-template-columns: 1fr;
+  }
+}
+
+.recipeImage{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:16px;
+}
