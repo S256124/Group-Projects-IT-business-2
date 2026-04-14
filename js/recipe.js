@@ -113,7 +113,14 @@ function renderRecipe(){
   const ingList = $("#mIng");
   if(ingList){
     ingList.innerHTML = "";
-    const currentIngredients = recipe.ing || [];
+
+    let currentIngredients = [];
+
+    if(Array.isArray(recipe.ing)){
+      currentIngredients = recipe.ing;
+    } else if(recipe.ing && Array.isArray(recipe.ing.da)){
+      currentIngredients = recipe.ing.da;
+    }
 
     currentIngredients.forEach(item => {
       const li = document.createElement("li");
