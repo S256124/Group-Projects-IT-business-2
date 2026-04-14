@@ -1,5 +1,7 @@
 let currentPage = null;
 
+// Feature: Recipe navigation handling
+// Handles navigation from frontpage to individual recipe pages.
 function goToRecipe(id){
   if(currentPage){
     sessionStorage.setItem("ff_last_page", currentPage);
@@ -7,6 +9,8 @@ function goToRecipe(id){
   window.location.href = `recipe.html?id=${encodeURIComponent(id)}`;
 }
 
+// Recipe items list generation
+// Converts recipe data into interactive visual cards shown in the grid layout
 function makeItem(r){
   const item = document.createElement("li");
   item.className = "item";
@@ -60,6 +64,8 @@ function renderList(ids){
   }
 }
 
+// Feature: Section/Page controller
+// Toggles visibility of #choose and #section and loads relevant recipe data.
 function showPage(page){
   currentPage = page;
 
@@ -100,6 +106,8 @@ function showPage(page){
   }
 }
 
+// Homepage navigation (goes back to homepage)
+// Resets UI and returns user to the frontpage
 function goBack(){
   const choose = $("#choose");
   const section = $("#section");
@@ -119,6 +127,8 @@ function goBack(){
   sessionStorage.removeItem("ff_last_page");
 }
 
+// Recipe Search Engine (Frontpage Search)
+// Searches across entire dataset (RECIPES) and renders matching results.
 function runFrontSearch(){
   const input = $("#frontSearch");
   if(!input) return;
@@ -173,6 +183,8 @@ function runFrontSearch(){
   }
 }
 
+// URL routing
+// Enables direct linking and restoring page state via URL.
 function openSectionFromUrl(){
   const params = new URLSearchParams(window.location.search);
   const section = params.get("section");
@@ -199,6 +211,8 @@ function openSectionFromUrl(){
   }
 }
 
+// Dynamic UI
+// Updates all visible UI text elements based on current state.
 function applyPageLanguage(){
   const chooseTitle = $("#chooseTitle");
   const frontText = $(".frontSearchText");
@@ -353,6 +367,7 @@ function goBack(){
   currentPage = null;
   sessionStorage.removeItem("ff_last_page");
 }
+
 // Recipe Search Engine (Frontpage Search)
 // Searches across entire dataset (RECIPES) and renders matching results.
 function runFrontSearch(){
