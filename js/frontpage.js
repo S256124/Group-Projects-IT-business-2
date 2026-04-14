@@ -1,5 +1,6 @@
 let currentPage = null;
-
+// Feature: Recipe navigation handling //
+// Funktionalitet: Saves current page and redirects user to a specific recipe page. //
 function goToRecipe(id){
   if(currentPage){
     sessionStorage.setItem("ff_last_page", currentPage);
@@ -7,6 +8,7 @@ function goToRecipe(id){
   window.location.href = `recipe.html?id=${encodeURIComponent(id)}`;
 }
 
+// Recipe items list generation //
 function makeItem(r){
   const item = document.createElement("li");
   item.className = "item";
@@ -23,6 +25,7 @@ function makeItem(r){
   return item;
 }
 
+// Recipe list rendering with search filter //
 function renderList(ids){
   const searchInput = $("#q");
   const searchValue = searchInput ? searchInput.value.trim().toLowerCase() : "";
@@ -59,7 +62,7 @@ function renderList(ids){
     empty.hidden = recipes.length > 0;
   }
 }
-
+// Feature: Section/Page controller //
 function showPage(page){
   currentPage = page;
 
