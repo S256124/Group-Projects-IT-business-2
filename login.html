@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoodFlix</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="loginPage"> 
+
+  <header class="top">
+    <div class="topLeft"></div>
+    <h1 id="homeLogo" class="logoBtn">
+      <a href="index.html">FOOD<span>FLIX</span></a>
+    </h1>
+  </header>
+
+  <div class="loginCenter">
+    <div class="loginBox">
+    <h1>Log ind</h1>
+    <p id="userStatus" class="userStatus">Ikke logget ind</p>
+
+    <label class="userLabel" for="emailInput">E-mail</label>
+    <input id="emailInput" class="userInput" type="email" placeholder="E-mail" />
+
+    <label class="userLabel" for="passwordInput">Adgangskode</label>
+    <input id="passwordInput" class="userInput" type="password" placeholder="Adgangskode" />
+
+    <div class="userButtons">
+      <button id="createProfileBtn" class="smallActionBtn" type="button">Opret profil</button>
+      <button id="loginBtn" class="smallActionBtn redMini" type="button">Log ind</button>
+    </div>
+
+    <button id="logoutBtn" class="logoutBtn" type="button">Log ud</button>
+
+    <p id="userMessage" class="userMessage"></p>
+    </div>
+  </div>
+</body>
+</html>

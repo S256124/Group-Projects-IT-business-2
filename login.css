@@ -1,0 +1,125 @@
+/* Hele login-siden */
+.loginPage {
+  min-height: 100vh;
+  background: none;
+}
+
+body.loginPage {
+  background: linear-gradient(
+    to bottom,
+    var(--bg) 0%,
+    var(--panel) 75%,
+    var(--red) 100%
+  ) !important;
+}
+
+.loginCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  background: none;
+}
+
+/* Login-boksen */
+.loginBox {
+  width: 360px;
+  padding: 40px 32px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+  color: var(--light);
+}
+
+/* Overskrift */
+.loginBox h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Labels */
+.userLabel {
+  display: block;
+  margin: 12px 0 4px;
+  font-size: 14px;
+  color: rgba(255,255,255,.85);
+}
+
+/* Inputs */
+.userInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: #1a1a1a;
+  color: var(--light);
+  font-size: 15px;
+  outline: none;
+}
+
+.userInput:focus {
+  border-color: var(--red);
+}
+
+/* Knapper */
+.userButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.smallActionBtn {
+  flex: 1;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  background: rgba(255,255,255,.15);
+  color: var(--light);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.smallActionBtn:hover {
+  background: rgba(255,255,255,.25);
+}
+
+.redMini {
+  background: var(--red);
+}
+
+.redMini:hover {
+  background: #f6121d;
+}
+
+/* Logout-knap */
+.logoutBtn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  background: rgba(109,109,110,.35);
+  color: var(--light);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logoutBtn:hover {
+  background: rgba(109,109,110,.55);
+}
+
+/* Status og beskeder */
+.userStatus {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,.85);
+}
+
+.userMessage {
+  margin-top: 16px;
+  min-height: 18px;
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+  text-align: center;
+}
