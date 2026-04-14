@@ -17,24 +17,6 @@ function renderStars(){
     wrap.appendChild(b);
   }
 
-// Recipe items list generation
-// Converts recipe data into interactive visual cards shown in the grid layout
-function makeItem(r){
-  const item = document.createElement("li");
-  item.className = "item";
-
-  item.innerHTML = `
-    <div class="poster">
-      <img src="${escapeHtml(r.img)}" alt="${escapeHtml(r.t)}" class="cardImage">
-    </div>
-    <p class="itTitle">${escapeHtml(r.t)}</p>
-  `;
-
-  item.onclick = () => goToRecipe(r.id);
-
-  return item;
-}
-
   const note = $("#note");
   if(note){
     note.textContent = currentRating
@@ -129,7 +111,7 @@ function renderRecipe(){
     });
   }
 
-   const stepsList = $("#mSteps");
+  const stepsList = $("#mSteps");
   if(stepsList){
     stepsList.innerHTML = "";
 
