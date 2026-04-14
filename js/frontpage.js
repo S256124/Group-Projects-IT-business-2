@@ -8,24 +8,6 @@ function goToRecipe(id){
   window.location.href = `recipe.html?id=${encodeURIComponent(id)}`;
 }
 
-// Recipe items list generation
-// Converts recipe data into interactive visual cards shown in the grid layout
-function makeItem(r){
-  const item = document.createElement("li");
-  item.className = "item";
-
-  item.innerHTML = `
-    <div class="poster">
-      <img src="${escapeHtml(r.img)}" alt="${escapeHtml(r.t)}" class="cardImage">
-    </div>
-    <p class="itTitle">${escapeHtml(r.t)}</p>
-  `;
-
-  item.onclick = () => goToRecipe(r.id);
-
-  return item;
-}
-
 // Recipe list rendering with search filter
 function renderList(ids){
   const searchInput = $("#q");
