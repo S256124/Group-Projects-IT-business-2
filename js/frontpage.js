@@ -260,7 +260,11 @@ function applyPageLanguage(){
 
 // Event Listener System (User Interaction Handling)
 // Connects user actions (click, input, submit) to application behavior.
-document.querySelectorAll(".choice").forEach(btn => {
+
+/*Denne funktion gør, at man ikke kan trykke på Your Choice, hvis man gerne vil skal man bare
+ændre ".choice:not(.blocked-choice)" til ".choice" i querySelectorAll i starten af denne fil. 
+Det er lavet sådanfor at vise, at der er funktioner som ikke er tilgængelige*/
+document.querySelectorAll(".choice:not(.blocked-choice)").forEach(btn => {
   btn.onclick = () => showPage(btn.dataset.page);
 });
 
