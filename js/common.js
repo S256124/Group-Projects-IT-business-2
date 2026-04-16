@@ -24,8 +24,11 @@ function rate(id){
   return get(LS_RATE, {})[id] || 0;
 }
 
-function inList(id){
-  return get(LS_LIST, []).includes(id);
+// Asks the server if this recipe is saved by the current user
+async function inList(id){
+  const response = await fetch(`/api/favourites/${id}`); // ask the server
+  const data = await response.json();                    // read the answer
+  return data.saved;                                     // true or false
 }
 
 function posterStyle(r){

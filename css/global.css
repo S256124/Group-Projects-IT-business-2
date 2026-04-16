@@ -262,7 +262,11 @@ body{
   cursor:pointer;
 }
 
-.star.on{
+.star.one,
+.star.two,
+.star.three,
+.star.four,
+.star.five{
   background: var(--red);
   border-color: rgba(229,9,20,.9);
 }

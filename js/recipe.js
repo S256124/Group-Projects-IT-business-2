@@ -1,64 +1,52 @@
 let currentId = null;
+    // TODO: when the backend is ready, replace this local UI-only update
+    // with an API call that saves the rating for the current recipe/user.
+    // The request should include the recipe id (currentId) and the logged-in user's
+    // auth token/session, then update the UI from the server response.
+// Funtion to update rating with star display and text output
+function rating(n) {
+  const stars = document.getElementsByClassName("star");
+    const output = document.getElementById("output");
+    remove();
+    for (let i = 0; i < n; i++) {
+        if (n == 1) cls = "one";
+        else if (n == 2) cls = "two";
+        else if (n == 3) cls = "three";
+        else if (n == 4) cls = "four";
+        else if (n == 5) cls = "five";
+        stars[i].className = "star " + cls;
+    }
+    output.innerText = "Rating is: " + n + "/5";
 
-// Rating stars UI rendering
-// Displays and updates the user's rating visually in the #stars container
-function renderStars(){
-  const wrap = $("#stars");
-  if(!wrap || !currentId) return;
-
-  wrap.innerHTML = "";
-
-  const currentRating = rate(currentId);
-
-  for(let i = 1; i <= 5; i++){
-    const b = document.createElement("button");
-    b.className = "star" + (i <= currentRating ? " on" : "");
-    b.textContent = "★";
-    b.type = "button";
-    b.onclick = () => setRating(i);
-    wrap.appendChild(b);
-  }
-
-  const note = $("#note");
-  if(note){
-    note.textContent = currentRating
-      ? `${t("yourRating")} ${currentRating}/5`
-      : t("noRating");
-  }
+    }
+// To remove the pre-applied styling
+function remove() {
+    let i = 0;
+    while (i < 5) {
+        stars[i].className = "star";
+        i++;
+    }
 }
 
-// Rating system
-// Stores rating per recipe and refreshes star display
-function setRating(v){
-  if(!currentId) return;
+async function toggleList(){
+  if(!currentId) return; // stop if there's no recipe loaded
 
-  const all = get(LS_RATE, {});
-  all[currentId] = v;
-  set(LS_RATE, all);
-  renderStars();
-}
+  const alreadySaved = await inList(currentId); // is it saved already?
 
-// "Your Choice" toggle system
-// Adds or removes current recipe from user's saved list
-function toggleList(){
-  if(!currentId) return;
-
-  const list = get(LS_LIST, []);
-  const i = list.indexOf(currentId);
-
-  if(i >= 0){
-    list.splice(i, 1);
+  if(alreadySaved){
+    await fetch(`/api/favourites/${currentId}`, { method: "DELETE" }); // remove it
   } else {
-    list.unshift(currentId);
+    await fetch(`/api/favourites/${currentId}`, { method: "POST" });   // save it
   }
 
-  set(LS_LIST, list);
-
+  // update the button text to reflect the new state
   const toggleBtn = $("#toggleList");
   if(toggleBtn){
-    toggleBtn.textContent = inList(currentId) ? t("removeChoice") : t("addChoice");
+    const nowSaved = await inList(currentId);
+    toggleBtn.textContent = nowSaved ? t("removeChoice") : t("addChoice");
   }
 }
+
 // Recipe page renderer
 // Loads recipe data from URL parameter and populates all UI elements
 function renderRecipe(){
@@ -142,10 +130,12 @@ function renderRecipe(){
   }
   
 // Updates "Your Choice" button text based on saved state
-  const toggleBtn = $("#toggleList");
-  if(toggleBtn){
-    toggleBtn.textContent = inList(currentId) ? t("removeChoice") : t("addChoice");
-  }
+  (async () => {
+    const toggleBtn = $("#toggleList");
+    if(toggleBtn){
+      toggleBtn.textContent = (await inList(currentId)) ? t("removeChoice") : t("addChoice");
+    }
+  })();
 
 // Initializes rating UI for current recipe
   renderStars();
@@ -166,10 +156,12 @@ function applyPageLanguage(){
   if(missingText) missingText.textContent = "Denne opskrift findes ikke.";
 
   if(currentId){
-    const toggleBtn = $("#toggleList");
-    if(toggleBtn){
-      toggleBtn.textContent = inList(currentId) ? t("removeChoice") : t("addChoice");
-    }
+    (async () => {
+      const toggleBtn = $("#toggleList");
+      if(toggleBtn){
+        toggleBtn.textContent = (await inList(currentId)) ? t("removeChoice") : t("addChoice");
+      }
+    })();
     renderStars();
   }
 }

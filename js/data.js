@@ -269,7 +269,6 @@ const INSP = ["r7","r1","r8","r3","r6","r2","r9","r5","r10","r11"];
 const TOP10 = ["r7","r2","r5","r1","r9","r10","r12","r8"];
 
 const LS_RATE = "ff_rate";
-const LS_LIST = "ff_list";
 const LS_LANG = "ff_lang";
 const LS_USERS = "ff_users";
 const LS_ACTIVE_USER = "ff_active_user";

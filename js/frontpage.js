@@ -97,7 +97,9 @@ function showPage(page){
       clearBtn.hidden = false;
       clearBtn.textContent = "Ryd";
     }
-    renderList(get(LS_LIST, []));
+    fetch("/api/favourites")
+      .then(r => r.json())
+      .then(ids => renderList(ids));
   }
 
   if(page === "search"){
@@ -270,13 +272,17 @@ if($("#q")){
   $("#q").oninput = () => {
     if(currentPage === "inspiration") renderList(INSP);
     if(currentPage === "top10") renderList(TOP10);
-    if(currentPage === "yourchoice") renderList(get(LS_LIST, []));
+    if(currentPage === "yourchoice"){
+      fetch("/api/favourites")
+        .then(r => r.json())
+        .then(ids => renderList(ids));
+    }
   };
 }
 
 if($("#clearList")){
-  $("#clearList").onclick = () => {
-    set(LS_LIST, []);
+  $("#clearList").onclick = async () => {
+    await fetch("/api/favourites", { method: "DELETE" });
     if(currentPage === "yourchoice"){
       renderList([]);
     }
