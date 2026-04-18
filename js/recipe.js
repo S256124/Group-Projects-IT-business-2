@@ -7,7 +7,11 @@ let currentId = null;
 function rating(n) {
   const stars = document.getElementsByClassName("star");
     const output = document.getElementById("output");
-    remove();
+    
+    remove(stars);
+
+    let cls = "";
+    
     for (let i = 0; i < n; i++) {
         if (n == 1) cls = "one";
         else if (n == 2) cls = "two";
@@ -16,15 +20,13 @@ function rating(n) {
         else if (n == 5) cls = "five";
         stars[i].className = "star " + cls;
     }
-    output.innerText = "Rating is: " + n + "/5";
+    output.innerText = "You have rated this recipe " + n + "/5";
 
     }
 // To remove the pre-applied styling
-function remove() {
-    let i = 0;
-    while (i < 5) {
+function remove(stars) {
+    for (let i = 0; i < stars.length; i++) {
         stars[i].className = "star";
-        i++;
     }
 }
 
