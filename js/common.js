@@ -5,7 +5,7 @@ const $$ = (s) => document.querySelectorAll(s);
 const byId = (id) => RECIPES.find(r => r.id === id);
 
 function t(key){
-  return TEXT.da[key] || key;
+  return TEXT[key] || key;
 }
 
 function get(k, d){
