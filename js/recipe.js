@@ -93,21 +93,18 @@ function renderRecipe(){
   const ingList = $("#mIng");
   if(ingList){
     ingList.innerHTML = "";
+    
+    //indrager ingredienser i recipe.js fra data.js og laver en liste ud af det
+    const currentIngredients = recipe.ing
 
-    let currentIngredients = [];
-
-    if(Array.isArray(recipe.ing)){
-      currentIngredients = recipe.ing;
-    } else if(recipe.ing && Array.isArray(recipe.ing.da)){
-      currentIngredients = recipe.ing.da;
-    }
-
+    // this is the loop, creating list items for each ingredient
     currentIngredients.forEach(item => {
       const li = document.createElement("li");
       li.textContent = item;
       ingList.appendChild(li);
     });
   }
+
 
   // Fills step-by-step instructions (#mSteps)
   const stepsList = $("#mSteps");
