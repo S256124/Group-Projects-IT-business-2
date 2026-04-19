@@ -12,8 +12,8 @@ app.secret_key = "some_random_secret_string"
 
 # Save our HTML file names into variables so we don't have to retype them
 HOME_TEMPLATE = 'index.html'
-PRODUCTS_TEMPLATE = 'products.html'
-PROFILE_TEMPLATE = 'profile.html'
+PRODUCTS_TEMPLATE = 'recipe.html'
+PROFILE_TEMPLATE = 'login.html'
 
 
 
@@ -23,11 +23,11 @@ def get_db_connection():
     # CHANGE THESE: Use your own database connection details!
     #-----------------------------------------
     conn = mariadb.connect(
-        user="username_here", 
-        password="password_here", 
+        user="gb09", 
+        password="gb09_DB_password", 
         host="127.0.0.1", 
         port=3306, 
-        database="database_name_here"
+        database="gb09_DB"
     )
     # Return the active connection so the rest of the code can use it
     return conn
@@ -42,7 +42,7 @@ def home():
     # Check if the user is already logged in by looking for 'userid' in their session cookie
     if 'userid' in session:
         # If they are logged in, send them straight to their profile page
-        return redirect(url_for('profile_page'))
+        return redirect(url_for('HOME_TAMPLATE'))
     
     # If they are not logged in, show them the home page template
     return render_template(HOME_TEMPLATE)
@@ -286,8 +286,8 @@ def logout():
 # This tells Python to start the server!
 
 # CHANGE THIS: Use your assigned Port number! Use a number above 64000 and below 64199. I recommend 640XX where XX is your group number. For example, if you are group 5, use 64005.
-PORT_NUMBER = 64000
+PORT_NUMBER = 64017
 
 if __name__ == '__main__':
     # CHANGE THIS: Use your assigned Port number!
-    app.run(host='130.225.170.248', port=PORT_NUMBER)
+    app.run(host='130.225.170.248', port=64017)
