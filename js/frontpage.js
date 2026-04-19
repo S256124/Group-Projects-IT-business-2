@@ -228,51 +228,6 @@ function openSectionFromUrl(){
   }
 }
 
-// Dynamic UI
-// Updates all visible UI text elements based on current state.
-function applyPageLanguage(){
-  const chooseTitle = $("#chooseTitle");
-  const frontText = $(".frontSearchText");
-  const frontSearch = $("#frontSearch");
-  const frontSearchBtn = $("#frontSearchBtn");
-  const q = $("#q");
-  const clearBtn = $("#clearList");
-  const backBtn = $("#backBtn");
-  const choices = $$(".choice");
-
-  if(chooseTitle) chooseTitle.textContent = "Vælg en sektion";
-
-  if(choices[0]){
-    choices[0].querySelector(".choiceTag").textContent = "INSPIRATION";
-    choices[0].querySelector(".choiceSub").textContent = "Idéer til at komme i gang";
-  }
-
-  if(choices[1]){
-    choices[1].querySelector(".choiceTag").textContent = "TOP 10";
-    choices[1].querySelector(".choiceSub").textContent = "Mest populære opskrifter";
-  }
-
-  if(choices[2]){
-    choices[2].querySelector(".choiceTag").textContent = "YOUR CHOICE";
-    choices[2].querySelector(".choiceSub").textContent = "Dine gemte opskrifter";
-  }
-
-  if(frontText) frontText.textContent = "Klar til at finde en opskrift? Søg efter navn eller ingredienser.";
-  if(frontSearch) frontSearch.placeholder = "Søg efter opskrifter...";
-  if(frontSearchBtn) frontSearchBtn.textContent = "Søg";
-  if(q) q.placeholder = "Søg i denne sektion...";
-  if(clearBtn && currentPage === "yourchoice") clearBtn.textContent = "Ryd";
-  if(backBtn) backBtn.textContent = "← Tilbage til forsiden";
-
-  const sectionTitle = $("#sectionTitle");
-  if(sectionTitle){
-    if(currentPage === "inspiration") sectionTitle.textContent = "Inspiration";
-    if(currentPage === "top10") sectionTitle.textContent = "Top 10";
-    if(currentPage === "yourchoice") sectionTitle.textContent = "Your Choice";
-    if(currentPage === "search") sectionTitle.textContent = "Søgeresultater";
-  }
-}
-
 // Event Listener System (User Interaction Handling)
 // Connects user actions (click, input, submit) to application behavior.
 
@@ -289,7 +244,11 @@ if($("#backBtn")){
 
 if($("#q")){
   $("#q").oninput = () => {
-    if(currentPage === "inspiration") renderList(INSP);
+    // Inspiration → randomiseret liste
+    if(currentPage === "inspiration") {
+      const randomIds = getRandomInspiration();
+      renderList(randomIds);
+    }
     if(currentPage === "top10") renderList(TOP10);
     if(currentPage === "yourchoice"){
       fetch("/api/favourites")
@@ -321,5 +280,4 @@ if($("#frontSearchForm")){
   });
 }
 
-applyPageLanguage();
 openSectionFromUrl();
