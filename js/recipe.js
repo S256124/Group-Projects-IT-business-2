@@ -20,7 +20,7 @@ function rating(n) {
         else if (n == 5) cls = "five";
         stars[i].className = "star " + cls;
     }
-    output.innerText = "You have rated this recipe " + n + "/5";
+    output.innerText = "Rating is: " + n + "/5";
 
     }
 // To remove the pre-applied styling
