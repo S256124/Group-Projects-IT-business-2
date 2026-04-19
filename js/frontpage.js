@@ -64,6 +64,18 @@ function renderList(ids){
   }
 }
 
+// --- Random Inspiration Generator ---
+function getRandomInspiration(count = 4) {
+  const copy = [...RECIPES];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy.slice(0, count).map(r => r.id);
+}
+
 // Feature: Section/Page controller
 // Toggles visibility of #choose and #section and loads relevant recipe data.
 function showPage(page){
@@ -79,10 +91,13 @@ function showPage(page){
   if(section) section.hidden = false;
   if(q) q.value = "";
 
+  // Inspiration-sektionen henter 4 tilfældige opskrifter via getRandomInspiration()
   if(page === "inspiration"){
-    if(sectionTitle) sectionTitle.textContent = "Inspiration";
-    if(clearBtn) clearBtn.hidden = true;
-    renderList(INSP);
+  if(sectionTitle) sectionTitle.textContent = "Inspiration";
+  if(clearBtn) clearBtn.hidden = true;
+
+  const randomIds = getRandomInspiration();
+  renderList(randomIds);
   }
 
   if(page === "top10"){
