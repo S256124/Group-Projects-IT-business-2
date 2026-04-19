@@ -20,7 +20,9 @@ function rating(n) {
         else if (n == 5) cls = "five";
         stars[i].className = "star " + cls;
     }
-    output.innerText = "Rating is: " + n + "/5";
+    if (output) {
+  output.innerText = `${t("yourRating")} ${n}/5`; //vores tekst system t()
+    }
 
     }
 // To remove the pre-applied styling
@@ -125,41 +127,17 @@ if(stepsList){
   (async () => {
     const toggleBtn = $("#toggleList");
     if(toggleBtn){
-      toggleBtn.textContent = (await inList(currentId)) ? t("removeChoice") : t("addChoice");
+      toggleBtn.textContent = (await inList(currentId))
+        ? t("removeChoice")
+        : t("addChoice");
     }
   })();
-
-// Initializes rating UI for current recipe
-  renderStars();
 }
 
-// Dynamic UI text
-// Updates all static text elements on the recipe page
-function applyPageLanguage(){
-  if($("#backBtn")) $("#backBtn").textContent = "← Tilbage til opskrifter";
-  if($("#ingredientsTitle")) $("#ingredientsTitle").textContent = "Ingredienser";
-  if($("#howToTitle")) $("#howToTitle").textContent = "Sådan gør du";
-  if($("#ratingTitle")) $("#ratingTitle").textContent = "Vurdering";
-
-  const missingTitle = $("#missingRecipe h2");
-  const missingText = $("#missingRecipe p");
-
-  if(missingTitle) missingTitle.textContent = "Opskrift ikke fundet";
-  if(missingText) missingText.textContent = "Denne opskrift findes ikke.";
-
-  if(currentId){
-    (async () => {
-      const toggleBtn = $("#toggleList");
-      if(toggleBtn){
-        toggleBtn.textContent = (await inList(currentId)) ? t("removeChoice") : t("addChoice");
-      }
-    })();
-    renderStars();
-  }
-}
 // Event listener system
 // Handles navigation and user actions
 if($("#backBtn")){
+  $("#backBtn").textContent = t("back");
   $("#backBtn").onclick = () => {
     const from = sessionStorage.getItem("ff_last_page") || "";
     if(from){
@@ -170,9 +148,9 @@ if($("#backBtn")){
   };
 }
 
+
 if($("#toggleList")){
   $("#toggleList").onclick = toggleList;
 }
 
-applyPageLanguage();
 renderRecipe();
