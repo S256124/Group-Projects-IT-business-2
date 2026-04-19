@@ -107,27 +107,20 @@ function renderRecipe(){
     });
   }
 
-
   // Fills step-by-step instructions (#mSteps)
-  const stepsList = $("#mSteps");
-  if(stepsList){
-    stepsList.innerHTML = "";
+const stepsList = $("#mSteps");
+if(stepsList){
+  stepsList.innerHTML = "";
 
-    let currentSteps = [];
+  const currentSteps = recipe.steps;
 
-    if(Array.isArray(recipe.steps)){
-      currentSteps = recipe.steps;
-    } else if(recipe.steps && Array.isArray(recipe.steps.da)){
-      currentSteps = recipe.steps.da;
-    }
-
-    currentSteps.forEach(step => {
-      const li = document.createElement("li");
-      li.textContent = step;
-      stepsList.appendChild(li);
-    });
-  }
-  
+  currentSteps.forEach(step => {
+    const li = document.createElement("li");
+    li.textContent = step;
+    stepsList.appendChild(li);
+  });
+}
+    
 // Updates "Your Choice" button text based on saved state
   (async () => {
     const toggleBtn = $("#toggleList");
